@@ -25,7 +25,10 @@ Failed unit tests.
 ![Failed unit tests front end.](images/2_Failed_unit_tests.png "")
 ![Failed unit tests back end.](images/2_Failed_unit_test_backend.png "")
 
-Failure because of vulnerable packages. [SCREENSHOT03]
+Failure because of vulnerable packages.
+![Failure because of vulnerable packages front end.](images/3_Failure_because_of_vulnerable_packages_frontend.png "")
+![Failure because of vulnerable packages back end](images/3_Failure_because_of_vulnerable_packages_backend.png "")
+
 An alert from one of your failed builds. [SCREENSHOT04]
 Evidence in your code that:
 
