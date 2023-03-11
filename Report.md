@@ -21,7 +21,9 @@ Console output of various pre-deploy job failure scenarios:
 Build Jobs that failed because of compile errors. ![Build Jobs that failed because of compile errors.](images/1._failed_because_of_compile_errors.png "")
 
 
-Failed unit tests. [SCREENSHOT02]
+Failed unit tests. 
+![Failed unit tests.](images/2_Failed_unit_tests.png "")
+
 Failure because of vulnerable packages. [SCREENSHOT03]
 An alert from one of your failed builds. [SCREENSHOT04]
 Evidence in your code that:
