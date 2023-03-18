@@ -154,7 +154,7 @@ jobs:
               --template-file .circleci/files/backend.yml \
               --tags project=udapeople \
               --stack-name "udapeople-backend-luantd" \
-              --parameter-overrides ID="luantd"
+              --parameter-overrides ID="backend-luantd"
       - run:
           name: Ensure front-end infrastructure exist
           command: |
@@ -162,7 +162,7 @@ jobs:
               --template-file .circleci/files/frontend.yml \
               --tags project=udapeople \
               --stack-name "udapeople-frontend-luantd" \
-              --parameter-overrides ID="luantd"
+              --parameter-overrides ID="frontend-luantd"
       - run:
           name: Add back-end ip to ansible inventory
           command: |
