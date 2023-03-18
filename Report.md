@@ -30,11 +30,14 @@ Failure because of vulnerable packages.
 ![Failure because of vulnerable packages back end](images/3_Failure_because_of_vulnerable_packages_backend.png "")
 
 An alert from one of your failed builds. [SCREENSHOT04]
+![alert from one of your failed builds](images/4_Circle_ci_email.png)
 Evidence in your code that:
 
 Compile errors have been fixed.
 Unit tests have been fixed.
 All critical security vulnerabilities caught by the “Analyze” job have been fixed.
+![All critical security vulnerabilities caught by the “Analyze” job have been fixed.](images/3_Fixed_vulnerable_packages_backend.png)
+![All critical security vulnerabilities caught by the “Analyze” job have been fixed.](images/3_Fixed_vulnerable_packages_frontend.png)
 Utilize a configuration management tool to accomplish deployment to cloud-based servers.
 
 Console output of appropriate failure for infrastructure creation job (using CloudFormation). [SCREENSHOT05]
