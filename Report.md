@@ -41,6 +41,7 @@ All critical security vulnerabilities caught by the “Analyze” job have been 
 Utilize a configuration management tool to accomplish deployment to cloud-based servers.
 
 Console output of appropriate failure for infrastructure creation job (using CloudFormation). [SCREENSHOT05]
+![Console output of appropriate failure for infrastructure creation job](images/5_infrastructure_build_failure.png)
 
 Console output of a smoke test job that is failing appropriately. [SCREENSHOT06]
 
