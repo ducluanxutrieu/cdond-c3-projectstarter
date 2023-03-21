@@ -176,16 +176,6 @@ jobs:
       # Here's where you will add some code to rollback on failure
 
   configure-infrastructure:
-    environments:
-      - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"
-      - TYPEORM_ENTITIES: "{{ lookup('env', 'TYPEORM_ENTITIES')}}"
-      - TYPEORM_HOST: "{{ lookup('env', 'TYPEORM_HOST')}}"
-      - TYPEORM_PORT: 5432
-      - TYPEORM_USERNAME: "{{ lookup('env', 'TYPEORM_USERNAME')}}"
-      - TYPEORM_PASSWORD: "{{ lookup('env', 'TYPEORM_PASSWORD')}}"
-      - TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE')}}"
-      - TYPEORM_MIGRATIONS: "{{ lookup('env', 'TYPEORM_MIGRATIONS')}}"
-      - TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
     docker:
       - image: python:3.9-slim-buster
     steps:
@@ -336,11 +326,11 @@ workflows:
           requires: [build-frontend]
       - deploy-infrastructure:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-      #     filters:
-      #       branches:
-      #         only: [test-feature-branch]
-      # - configure-infrastructure:
-      #     requires: [deploy-infrastructure]
+          filters:
+            branches:
+              only: [master]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
       # - run-migrations:
       #     requires: [configure-infrastructure]
       # - deploy-frontend:
