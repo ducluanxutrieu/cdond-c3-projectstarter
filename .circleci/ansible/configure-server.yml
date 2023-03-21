@@ -36,36 +36,4 @@
     - TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
 
   roles:
-    - name: Install Node.js and npm
-      hosts: all
-      become: yes
-      tasks:
-        - name: Install Node.js and npm
-          apt:
-            name: "{{ item }}"
-            state: present
-            update_cache: yes
-          with_items:
-            - nodejs
-            - npm
-    - name: Install Python and update/upgrade packages
-      hosts: all
-      become: yes
-      tasks:
-        - name: Install Python
-          apt:
-            name: python3
-            state: present
-            update_cache: yes
-        - name: Update/upgrade packages
-          apt:
-            upgrade: yes
-            update_cache: yes
-    - name: Install pm2
-      hosts: all
-      become: yes
-      tasks:
-        - name: Install pm2
-          npm:
-            name: pm2
-            global: yes
+    - configure-server
