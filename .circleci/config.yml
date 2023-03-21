@@ -188,8 +188,6 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            pip install tar
-            pip install gzip
             pip install ansible
             pip install awscli
       - run:
