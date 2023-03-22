@@ -205,9 +205,6 @@ jobs:
       - restore_cache:
           keys: [backend-build]
       - run:
-          name: Install tar and gzip utilities
-          command: yum install tar gzip -y
-      - run:
           name: Add backend environment variable
           command: |
             echo ENVIROMENT=production > "backend/.env"
@@ -250,6 +247,9 @@ jobs:
       - checkout
       - attach_workspace:
           at: /tmp/workspace
+      - run:
+          name: Install tar and gzip utilities
+          command: yum install tar gzip -y
       - run:
           name: Install dependencies
           command: |
