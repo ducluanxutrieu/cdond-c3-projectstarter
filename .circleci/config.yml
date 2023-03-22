@@ -245,11 +245,11 @@ jobs:
       - image: amazon/aws-cli # Docker image here that supports AWS CLI
     steps:
       - checkout
-      - attach_workspace:
-          at: /tmp/workspace
       - run:
           name: Install tar and gzip utilities
           command: yum install tar gzip -y
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
           name: Install dependencies
           command: |
