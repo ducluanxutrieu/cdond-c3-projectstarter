@@ -246,15 +246,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install tar and gzip utilities
-          command: yum install tar gzip -y
-      - attach_workspace:
-          at: /tmp/workspace
-      - run:
           name: Install dependencies
           command: |
-            pip install ansible
-            pip install awscli
+            yum install tar gzip -y
+            curl --silent --location https://rpm.nodesource.com/setup_13.x | bash -
+            yum -y install nodejs
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
           name: Get backend url
           command: |
