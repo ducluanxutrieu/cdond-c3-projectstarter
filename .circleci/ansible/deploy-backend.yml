@@ -8,5 +8,8 @@
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_host_key_checking: false
     - ansible_stdout_callback: yaml
+  tasks:
+    - name: Extract the zipped artifact into the EC2 instance, and then start the app.
+    
   roles:
     - deploy
