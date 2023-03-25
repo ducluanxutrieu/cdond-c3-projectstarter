@@ -285,7 +285,6 @@ jobs:
             yum install tar gzip -y
             curl --silent --location https://rpm.nodesource.com/setup_13.x | bash -
             yum -y install nodejs
-            yum -y install epel-release
             yum -y install ansible
       - attach_workspace:
           at: /tmp/workspace
