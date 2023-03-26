@@ -27,7 +27,7 @@
 
 - name: "Unarchive backend files"
   unarchive:
-    src: files/artifact.tar.gz
+    src: artifact.tar.gz
     dest: ~/web
 
 - name: "Installing Node Dependencies"
