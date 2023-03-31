@@ -40,6 +40,7 @@
     export TYPEORM_MIGRATIONS_DIR=./src/migrations
     export TYPEORM_ENTITIES=./src/modules/domain/**/*.entity.ts
     export TYPEORM_MIGRATIONS=./src/migrations/*.ts
+    . ../.env && env
     pm2 stop default
     pm2 start main.js
   register: execute_node
