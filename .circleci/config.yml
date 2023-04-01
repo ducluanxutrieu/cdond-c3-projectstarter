@@ -288,21 +288,6 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Add backend environment variable
-          command: |
-            echo ENVIROMENT=production > "backend/.env"
-            echo NODE_ENV=production > "backend/.env"
-            echo VERSION=1 > "backend/.env"
-            echo TYPEORM_CONNECTION=postgres >> "backend/.env"
-            echo TYPEORM_MIGRATIONS_DIR=./src/migrations >> "backend/.env"
-            echo TYPEORM_ENTITIES=./src/modules/domain/**/*.entity.ts >> "backend/.env"
-            echo TYPEORM_HOST=$TYPEORM_HOST >> "backend/.env"
-            echo TYPEORM_PORT=$TYPEORM_PORT >> "backend/.env"
-            echo TYPEORM_USERNAME=$TYPEORM_USERNAME >> "backend/.env"
-            echo TYPEORM_PASSWORD=$TYPEORM_PASSWORD >> "backend/.env"
-            echo TYPEORM_DATABASE=$TYPEORM_DATABASE >> "backend/.env"
-            cat backend/.env
-      - run:
           name: Deploy backend
           command: |
             cd backend
@@ -314,6 +299,9 @@ jobs:
             cd ../.circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
+            export TYPEORM_MIGRATIONS_DIR=./migrations
+            export TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js}
+            export TYPEORM_MIGRATIONS=./migrations/*.ts
             ansible-playbook -i inventory.txt deploy-backend.yml
       # - destroy-environment
       # - revert-migrations 
