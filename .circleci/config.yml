@@ -184,7 +184,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "c8:26:f3:5a:54:be:3d:57:f5:62:ad:68:cf:9b:6d:e2"
+            - "ac:09:c9:b9:fa:ab:14:88:22:f4:e1:59:ea:60:67:31"
       - attach_workspace:
           at: ~/
       - run:
@@ -280,7 +280,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "c8:26:f3:5a:54:be:3d:57:f5:62:ad:68:cf:9b:6d:e2"
+            - "ac:09:c9:b9:fa:ab:14:88:22:f4:e1:59:ea:60:67:31"
       - run:
           name: Install dependencies
           command: |
