@@ -269,7 +269,7 @@ jobs:
             npm install
             npm run build
             tar -czvf artifact-frontend-luantd.tar.gz dist
-            aws s3 cp dist s3://udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7} --recursive
+            aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # - destroy-environment
       # - revert-migrations 
 
@@ -290,7 +290,6 @@ jobs:
       - run:
           name: Build package
           command: |
-            cat .circleci/ansible
             cd backend
             npm i
             npm run build
