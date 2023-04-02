@@ -44,6 +44,7 @@ Console output of appropriate failure for infrastructure creation job (using Clo
 ![Console output of appropriate failure for infrastructure creation job](images/5_infrastructure_build_failure.png)
 
 Console output of a smoke test job that is failing appropriately. [SCREENSHOT06]
+![](images/6_failed_smoke_test.png)
 
 Console output of a successful rollback after a failed smoke test. [SCREENSHOT07]
 

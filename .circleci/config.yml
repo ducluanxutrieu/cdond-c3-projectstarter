@@ -1,37 +1,42 @@
 version: 2.1
 
 commands:
-# destroy-environment:
-#   description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
-#   parameters:
-#     # Add parameter here
-#   steps:
-#     - run:
-#         name: Destroy environments
-#         when: on_fail
-#         command: |
-#           # Your code here
-#           exit 1
+destroy-environment:
+  description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
+  parameters:
+      workflow_id:
+        type: string
+        default: ${CIRCLE_WORKFLOW_ID:0:7}
+  steps:
+    - run:
+        name: Destroy environments
+        when: on_fail
+        command: |
+          aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
+          aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
+          aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
 
-# revert-migrations:
-#   description: Revert the last migration if successfully run in the current workflow.
-#   parameters:
-#     # Add parameter here
-#   steps:
-#     - run:
-#         name: Revert migrations
-#         # Add when this will run
-#         command: |
-#           # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-#           SUCCESS = 1
-#           if(( $SUCCESS==1 ));
-#           then
-#           #  cd ~/project/backend
-#           #  npm install
-#           #  Add revert code here. You can find this in the Getting Started section.
-#             exit 1
-#           fi
-
+revert-migrations:
+  description: Revert the last migration if successfully run in the current workflow.
+  parameters:
+    parameters:
+      workflow_id:
+        type: string
+        default: ${CIRCLE_WORKFLOW_ID:0:7}
+  steps:
+    - run:
+        name: Revert migrations
+        when: on_fail
+        command: |
+          # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
+          SUCCESS=$(curl --insecure  https://kvdb.io/KsNGrM3QFwg1rVTWTyT5eG/migration_<< parameters.workflow_id >>)
+          # Logic for reverting the database state
+          if (( $SUCCESS == 1 ));
+          then
+            cd ~/project/backend
+            npm install
+            npm run migration:revert
+          fi  
 jobs:
   build-frontend:
     docker:
@@ -175,7 +180,7 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
-      # - destroy-environment
+      - destroy-environment
 
   configure-infrastructure:
     docker:
@@ -196,7 +201,7 @@ jobs:
           command: |
             cd .circleci/ansible
             ansible-playbook -i inventory.txt configure-server.yml
-      # - destroy-environment
+      - destroy-environment
 
   run-migrations:
     docker:
@@ -233,13 +238,13 @@ jobs:
           command: |
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
-              curl -k https://kvdb.io/KsNGrM3QFwg1rVTWTyT5eG/migration_luantd  -d '1'
+              curl -k https://kvdb.io/KsNGrM3QFwg1rVTWTyT5eG/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
             fi
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
-      # - destroy-environment
-      # - revert-migrations 
+      - destroy-environment
+      - revert-migrations 
 
   deploy-frontend:
     docker:
@@ -270,8 +275,8 @@ jobs:
             npm run build
             tar -czvf artifact-frontend-luantd.tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
-      # - destroy-environment
-      # - revert-migrations 
+      - destroy-environment
+      - revert-migrations 
 
   deploy-backend:
     docker:
@@ -305,8 +310,8 @@ jobs:
             export TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js}
             export TYPEORM_MIGRATIONS=./migrations/*.ts
             ansible-playbook -i inventory.txt deploy-backend.yml
-      # - destroy-environment
-      # - revert-migrations 
+      - destroy-environment
+      - revert-migrations 
 
   smoke-test:
     docker:
@@ -322,9 +327,9 @@ jobs:
             echo "${API_URL}"
             if curl "${API_URL}/api/status" | grep "ok"
             then
-              return 0
+              exit 0
             else
-              return 1
+              exit 1
             fi
       - run:
           name: Frontend smoke test.
@@ -334,12 +339,12 @@ jobs:
             if curl -s ${URL} | grep "Welcome"
             then
               # Change this to 0 after the job fails
-              return 1
+              exit 0
             else
-              return 1
+              exit 1
             fi
-      # - destroy-environment
-      # - revert-migrations 
+      - destroy-environment
+      - revert-migrations 
 
 #   cloudfront-update:
 #     docker:
