@@ -288,15 +288,18 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Deploy backend
+          name: Build package
           command: |
+            cat .circleci/ansible
             cd backend
             npm i
             npm run build
             tar -czf artifact.tar.gz dist/* package*
-            ls
             cp artifact.tar.gz ../.circleci/ansible/roles/deploy/files/artifact.tar.gz
-            cd ../.circleci/ansible
+      - run:
+          name: Deploy backend
+          command: |
+            cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             export TYPEORM_MIGRATIONS_DIR=./migrations
