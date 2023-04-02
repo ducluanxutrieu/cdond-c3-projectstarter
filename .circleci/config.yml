@@ -363,6 +363,14 @@ jobs:
             curl --silent --location https://rpm.nodesource.com/setup_13.x | bash -
             yum -y install nodejs
       - run:
+          name: Save Old_Workflow_ID to kvdb.io
+          command: |
+            export OLD_WORKFLOW_ID=$(aws cloudformation \
+                      list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
+                      --no-paginate --output text)
+            echo "Old Wokflow ID: $OLD_WORKFLOW_ID"
+            curl https://kvdb.io/KsNGrM3QFwg1rVTWTyT5eG/old_workflow_id -d "${OLD_WORKFLOW_ID}"
+      - run:
           name: Update cloudfront distribution
           command: |
             # Change the initial stack name, as applicable to you
@@ -371,6 +379,7 @@ jobs:
                       --stack-name InitialStack \
                       --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID:0:7}" \
                       --tags project=udapeople
+            curl https://kvdb.io/KsNGrM3QFwg1rVTWTyT5eG/old_workflow_id -d "${OLD_WORKFLOW_ID}"
       - destroy-environment
       - revert-migrations 
 
@@ -382,19 +391,12 @@ jobs:
       - run:
           name: Get old stack workflow id
           command: |
-            # Fetch the Old workflow ID
-            export OldWorkflowID=$(aws cloudformation \
-                      list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
-                      --no-paginate --output text)
-            echo OldWorkflowID: "${OldWorkflowID}"
-            echo CIRCLE_WORKFLOW_ID "${CIRCLE_WORKFLOW_ID:0:7}"
-            # Fetch the stack names          
-            export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
-                      --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
-            echo Stack names: "${STACKS[@]}"  
-      - run:
-          name: Remove old stacks and files
-          command: |
+            export STACKS=($(aws cloudformation list-stacks \
+                --query "StackSummaries[*].StackName" \
+                --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
+            echo Stack names: "${STACKS[@]}"
+            export OldWorkflowID=$(curl --insecure https://kvdb.io/KsNGrM3QFwg1rVTWTyT5eG/old_workflow_id)
+            echo Old Workflow ID: $OldWorkflowID 
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
               aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
