@@ -51,8 +51,10 @@ Console output of a successful rollback after a failed smoke test. [SCREENSHOT07
 
 Console output of successful promotion of new version to production in CloudFront. [SCREENSHOT08]
 ![](images/8_success_job.png)
+![](images/8_success_cloud_front.png)
 
 Console output of successful cleanup job that removes old S3 bucket and EC2 instance. [SCREENSHOT09]
+![](images/9_successful_cleanup_job.png)
 
 Evidence that deploy jobs only happen on master branch. [SCREENSHOT10]
 
