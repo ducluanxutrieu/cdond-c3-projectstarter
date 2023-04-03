@@ -4,7 +4,18 @@ CRITERIA
 MEETS SPECIFICATIONS
 Explain the fundamentals and benefits of CI/CD to achieve, build, and deploy automation for cloud-based software products.
 
+``` 
+1. CI/CD increases the productivity of Dev and Ops personnel by reducing manual development work. Instead, it enables them to concentrate more on improving the way they produce software.
+Continuous Delivery (CD) automatically sends code changes to environments that are ready for production for approval, while Continuous Deployment (CD) automatically releases code changes to customers. 
+2. Continuous Integration (CI) automatically builds, tests, and integrates code changes within a shared repository.
+3. An automated CI/CD pipeline has many advantages, including ensuring you're building the proper product for your users and speeding up issue fixes, as well as streamlining your entire software development process.
+```
+
 The CI/CD benefits proposal contains essential benefits of CI/CD, and describes the business context that will benefit from the automation tools. Explanation should include benefits that translate to revenue and cost for the business.
+```
+1. Benefits that translate to revenue and expense for the business should be included in the CI/CD benefits proposal1. Scalability, elasticity, and better performance, attributes of cloud-native applications, are made possible by CI/CD. When done correctly, it enables teams to methodically test each change made to the source code and standardizes deployment methods across all projects.
+2. With the help of automation, CI/CD is a two-step method that significantly accelerates the creation and delivery of software. Continuous Integration (CI) improves developer chores like source code integration and version control so that software may be released into production more quickly. Software testing and deployment are automated via continuous delivery (CD).
+```
 
 # Section 2: Deploying Working, Trustworthy Software
 
@@ -57,10 +68,17 @@ Console output of successful cleanup job that removes old S3 bucket and EC2 inst
 ![](images/9_successful_cleanup_job.png)
 
 Evidence that deploy jobs only happen on master branch. [SCREENSHOT10]
+![](images/10_whole_process_1.png)
+![](images/10_whole_process_2.png)
 
 Evidence of deployed and functioning front-end application in an S3 bucket [URL02] and in CloudFront. [URL03]
 
+[S3 URL] http://udapeople-5791cb7.s3-website-us-east-1.amazonaws.com/
+
+[CloudFront URL] http://d5rkcmxklo9ld.cloudfront.net
+
 Evidence of healthy back-end application. [URL04]
+[Backend URL] http://44.202.157.195:3030/api/status
 
 Section 3: Turn Errors into Sirens
 
