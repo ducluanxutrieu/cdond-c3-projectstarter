@@ -72,12 +72,12 @@ Evidence that deploy jobs only happen on master branch. [SCREENSHOT10]
 
 Evidence of deployed and functioning front-end application in an S3 bucket [URL02] and in CloudFront. [URL03]
 
-[S3 URL] http://udapeople-5791cb7.s3-website-us-east-1.amazonaws.com/
+[S3 URL] http://udapeople-c36074e.s3-website-us-east-1.amazonaws.com/
 
 [CloudFront URL] http://d5rkcmxklo9ld.cloudfront.net
 
 Evidence of healthy back-end application. [URL04]
-[Backend URL] http://44.202.157.195:3030/api/status
+[Backend URL] http://184.73.136.57:3030/api/status
 
 Section 3: Turn Errors into Sirens
 
@@ -86,7 +86,7 @@ MEETS SPECIFICATIONS
 Surface critical server errors for diagnosis using centralized logging.
 
 Evidence of Prometheus Server. [URL05]
-http://ec2-54-160-8-66.compute-1.amazonaws.com:9090/targets
+http://ec2-54-152-85-118.compute-1.amazonaws.com:9090/targets
 
 Evidence that Prometheus is monitoring memory, cpu and disk usage of EC2 instances. [SCREENSHOT11]
 ![](images/11_prometheus_targets.png)
