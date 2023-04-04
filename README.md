@@ -13,8 +13,7 @@ Continuous Delivery (CD) automatically sends code changes to environments that a
 
 The CI/CD benefits proposal contains essential benefits of CI/CD, and describes the business context that will benefit from the automation tools. Explanation should include benefits that translate to revenue and cost for the business.
 ```
-1. Benefits that translate to revenue and expense for the business should be included in the CI/CD benefits proposal1. Scalability, elasticity, and better performance, attributes of cloud-native applications, are made possible by CI/CD. When done correctly, it enables teams to methodically test each change made to the source code and standardizes deployment methods across all projects.
-2. With the help of automation, CI/CD is a two-step method that significantly accelerates the creation and delivery of software. Continuous Integration (CI) improves developer chores like source code integration and version control so that software may be released into production more quickly. Software testing and deployment are automated via continuous delivery (CD).
+I presentation file
 ```
 
 # Section 2: Deploying Working, Trustworthy Software
