@@ -2,10 +2,10 @@ Public Url to GitHub repository (not private) [URL01]
 https://github.com/ducluanxutrieu/module3
 
 Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02]
-[S3 URL] http://udapeople-3b1f215.s3-website-us-east-1.amazonaws.com/
+[S3 URL] http://udapeople-c36074e.s3-website-us-east-1.amazonaws.com/
 
 [CloudFront URL] http://d5rkcmxklo9ld.cloudfront.net
 
-[Backend] http://44.203.158.133:3030/api/status
+[Backend] http://184.73.136.57:3030/api/status
 
 [Prometheus] http://ec2-54-152-85-118.compute-1.amazonaws.com:9090/targets
